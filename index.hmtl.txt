@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My personal portfolio website">
+    <title>My Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #243247;
+            background: linear-gradient(135deg, #f0f4ff, #fce7f3, #e0f2fe);
+            background-size: 300% 300%;
+            animation: gradientMove 14s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 28px 15px;
+            background: linear-gradient(120deg, #6c3bdb, #2475e8, #e84393);
+        }
+
+        header h1 {
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background: linear-gradient(90deg, #5b21b6, #2563eb, #db2777);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #312e81;
+            background: #fde68a;
+            transform: translateY(-2px);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #f59e0b;
+            outline-offset: 4px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            background: linear-gradient(135deg, #ddd6fe, #bfdbfe, #fbcfe8);
+        }
+
+        .profile {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, #7c3aed, #ec4899, #06b6d4);
+            box-shadow: 0 0 25px #a78bfa;
+            transition: 0.4s;
+        }
+
+        .profile:hover {
+            transform: scale(1.06);
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        .hero h2 {
+            color: #4c1d95;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 16px;
+        }
+
+        .container {
+            width: min(950px, 100%);
+            margin: auto;
+            padding: 28px 18px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.88);
+            margin-bottom: 25px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(100, 80, 150, 0.12);
+            scroll-margin-top: 85px;
+            transition: 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(99, 102, 241, 0.18);
+        }
+
+        section h2 {
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            color: #6d28d9;
+            border-bottom: 2px solid #c4b5fd;
+        }
+
+        ul {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 9px 16px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #ddd6fe, #fbcfe8);
+            color: #4c1d95;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 7px 16px #c4b5fd;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #7c3aed;
+            background: linear-gradient(135deg, #ddd6fe, #bfdbfe, #fbcfe8);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px #c4b5fd;
+        }
+
+        .project-card h3 {
+            color: #5b21b6;
+            margin-bottom: 8px;
+        }
+
+        button {
+            border: none;
+            border-radius: 25px;
+            padding: 11px 20px;
+            margin: 8px 5px 0;
+            color: white;
+            background: linear-gradient(90deg, #7c3aed, #2563eb, #db2777);
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+        }
+
+        #welcomeMessage {
+            min-height: 25px;
+            margin-top: 12px;
+            color: #5b21b6;
+            font-weight: bold;
+        }
+
+        #topButton {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            margin: 0;
+        }
+
+        footer {
+            padding: 22px 15px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(120deg, #312e81, #6d28d9, #9d174d);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            color: #f8fafc;
+            background: linear-gradient(135deg, #111827, #312e81, #4a1942);
+            animation: none;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, #312e81, #1e3a8a, #831843);
+        }
+
+        body.dark-mode .hero h2,
+        body.dark-mode section h2 {
+            color: #e9d5ff;
+        }
+
+        body.dark-mode section {
+            color: #f8fafc;
+            background: #1e293b;
+        }
+
+        body.dark-mode .project-card {
+            background: linear-gradient(135deg, #312e81, #334155);
+        }
+
+        body.dark-mode .project-card h3,
+        body.dark-mode #welcomeMessage {
+            color: #fbcfe8;
+        }
+
+        body.dark-mode .skill {
+            color: white;
+            background: linear-gradient(135deg, #4c1d95, #831843);
+        }
+
+        @media (max-width: 650px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            nav {
+                gap: 3px;
+                padding: 8px 4px;
+            }
+
+            nav a {
+                padding: 7px 8px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 15px;
+            }
+
+            .hero h2 {
+                font-size: 25px;
+            }
+
+            .profile {
+                width: 155px;
+                height: 155px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>MY PERSONAL PORTFOLIO</h1>
+        <p>Welcome to My Website</p>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+
+        <div class="hero" id="home">
+
+            <div class="profile">
+                <img src="myphoto.jpg" alt="My profile photo">
+            </div>
+
+            <h2>Hello, I'm McMannement!</h2>
+
+            <p>
+                I am a Networking Computing student at
+                Universiti Malaysia Sarawak (UNIMAS).
+                Welcome to my personal portfolio.
+            </p>
+
+            <button type="button" onclick="showWelcome()">
+                Click to Say Hello
+            </button>
+
+            <p id="welcomeMessage" aria-live="polite"></p>
+
+            <button type="button" onclick="toggleTheme()">
+                Change Theme
+            </button>
+
+        </div>
+
+        <div class="container">
+
+            <section id="about">
+                <h2>About Me</h2>
+                <p>
+                    My name is McMannement Essau Backhem Anak Putra.
+                    I am a student at Universiti Malaysia Sarawak (UNIMAS)
+                    studying Networking Computing. I am interested in
+                    technology, computers and learning new IT skills.
+                    My goal is to improve my knowledge and become better
+                    in the field of computing.
+                </p>
+            </section>
+
+            <section id="education">
+                <h2>My Education</h2>
+                <ul>
+                    <li>SK St Ambrose Panchor</li>
+                    <li>Sekolah Menengah Sains Kuching Utara</li>
+                    <li>Universiti Malaysia Sarawak (UNIMAS)</li>
+                    <li>Programme: Networking Computing</li>
+                </ul>
+            </section>
+
+            <section id="skills">
+                <h2>My Skills</h2>
+
+                <div class="skills">
+                    <span class="skill">HTML Basics</span>
+                    <span class="skill">Computer Skills</span>
+                    <span class="skill">Networking Basics</span>
+                    <span class="skill">Problem Solving</span>
+                    <span class="skill">Teamwork</span>
+                </div>
+
+                <p style="margin-top: 15px;">
+                    I am continuously learning and improving my
+                    technical and communication skills.
+                </p>
+            </section>
+
+            <section id="projects">
+                <h2>My Projects</h2>
+
+                <div class="project-grid">
+
+                    <article class="project-card">
+                        <h3>1. Personal Portfolio Website</h3>
+                        <p>
+                            A personal website created using
+                            HTML, CSS and JavaScript.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>2. C Programming</h3>
+                        <p>
+                            Programming exercises involving
+                            loops, functions and arrays.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>3. Smart Home Management System</h3>
+                        <p>
+                            A system concept for controlling
+                            home devices and security.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>4. Private 5G Network</h3>
+                        <p>
+                            An assignment about private 5G
+                            networks and Industry 4.0.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>5. UML Class Diagram</h3>
+                        <p>
+                            A system design project using
+                            object-oriented concepts.
+                        </p>
+                    </article>
+
+                </div>
+            </section>
+
+            <section id="hobbies">
+                <h2>My Hobbies</h2>
+                <ul>
+                    <li>Playing football</li>
+                    <li>Learning about technology</li>
+                    <li>Playing games</li>
+                    <li>Spending time with friends</li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Contact Me</h2>
+
+                <p>
+                    If you want to contact me, you can reach me
+                    through my email below.
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:mcbackhem21@gmail.com">
+                        mcbackhem21@gmail.com
+                    </a>
+                </p>
+
+                <button type="button" onclick="contactMe()">
+                    Contact Me
+                </button>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            &copy; <span id="year"></span>
+            McMannement Essau Backhem Anak Putra
+        </p>
+        <p>My Personal Portfolio | UNIMAS</p>
+    </footer>
+
+    <button id="topButton" type="button"
+        onclick="goToTop()" aria-label="Back to top">
+        Back to Top ↑
+    </button>
+
+    <script>
+
+        // Feature 1: Show a welcome message
+        function showWelcome() {
+            document.getElementById("welcomeMessage").textContent =
+                "Thank you for visiting my portfolio! Have a great day!";
+        }
+
+        // Feature 2: Switch between light mode and dark mode
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Feature 3: Open the visitor's email application
+        function contactMe() {
+            window.location.href = "mailto:mcbackhem21@gmail.com";
+        }
+
+        // Feature 4: Display the current year automatically
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Feature 5: Show or hide the Back to Top button
+        const topButton = document.getElementById("topButton");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 250) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        });
+
+        // Feature 6: Smoothly return to the top
+        function goToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        // Feature 7: Highlight the current navigation link
+        const pageSections =
+            document.querySelectorAll("main section, .hero");
+
+        const navLinks = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", function () {
+            let currentSection = "home";
+
+            pageSections.forEach(function (section) {
+                if (window.scrollY >= section.offsetTop - 140) {
+                    currentSection = section.id;
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                link.classList.toggle(
+                    "active",
+                    link.getAttribute("href") === "#" + currentSection
+                );
+            });
+        });
+
+    </script>
+
+</body>
+</html>
